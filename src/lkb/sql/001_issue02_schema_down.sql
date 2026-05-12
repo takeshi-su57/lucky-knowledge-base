@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS bad_answer_logs;
+DROP TABLE IF EXISTS feedback_events;
 DROP TABLE IF EXISTS feedback;
 DROP TABLE IF EXISTS answers;
 DROP TABLE IF EXISTS results;

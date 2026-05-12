@@ -98,8 +98,14 @@ def ask_question(
         )
 
     if not top_chunks or top_chunks[0].score < threshold:
-        record_query(index_dir, question, top_chunks, UNKNOWN_ANSWER)
-        return AskResult(answer=UNKNOWN_ANSWER, citations=[], top_chunks=top_chunks)
+        query_id, answer_id = record_query(index_dir, question, top_chunks, UNKNOWN_ANSWER)
+        return AskResult(
+            answer=UNKNOWN_ANSWER,
+            citations=[],
+            top_chunks=top_chunks,
+            query_id=query_id,
+            answer_id=answer_id,
+        )
 
     best = top_chunks[0]
     answer = best.chunk.text.strip() or UNKNOWN_ANSWER
@@ -118,8 +124,14 @@ def ask_question(
         for i, row in enumerate(top_chunks)
     )
     _ = GROUNDING_PROMPT_TEMPLATE.format(question=question, context=context)
-    record_query(index_dir, question, top_chunks, answer)
-    return AskResult(answer=answer, citations=citations, top_chunks=top_chunks)
+    query_id, answer_id = record_query(index_dir, question, top_chunks, answer)
+    return AskResult(
+        answer=answer,
+        citations=citations,
+        top_chunks=top_chunks,
+        query_id=query_id,
+        answer_id=answer_id,
+    )
 
 
 def inspect_retrieval(
