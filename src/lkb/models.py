@@ -29,6 +29,8 @@ class AskResult:
     answer: str
     citations: list[str]
     top_chunks: list[ScoredChunk]
+    query_id: int | None = None
+    answer_id: int | None = None
 
 
 @dataclass(frozen=True)

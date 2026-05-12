@@ -43,6 +43,8 @@ def clear_all_data(index_dir: Path) -> None:
     ensure_schema(index_dir)
     db_path = get_sqlite_db_path(index_dir)
     with _open_conn(db_path) as conn:
+        conn.execute("DELETE FROM bad_answer_logs")
+        conn.execute("DELETE FROM feedback_events")
         conn.execute("DELETE FROM feedback")
         conn.execute("DELETE FROM answers")
         conn.execute("DELETE FROM results")
@@ -156,7 +158,7 @@ def replace_document_chunks(index_dir: Path, document_id: int, chunks: list[dict
     return inserted
 
 
-def record_query(index_dir: Path, question: str, top_chunks: list[ScoredChunk], answer: str) -> None:
+def record_query(index_dir: Path, question: str, top_chunks: list[ScoredChunk], answer: str) -> tuple[int, int]:
     ensure_schema(index_dir)
     db_path = get_sqlite_db_path(index_dir)
     with _open_conn(db_path) as conn:
@@ -182,6 +184,105 @@ def record_query(index_dir: Path, question: str, top_chunks: list[ScoredChunk], 
             (answer_id, 0, ""),
         )
         conn.commit()
+    return query_id, answer_id
+
+
+def upsert_feedback(index_dir: Path, answer_id: int, rating: int, comment: str) -> None:
+    ensure_schema(index_dir)
+    db_path = get_sqlite_db_path(index_dir)
+    with _open_conn(db_path) as conn:
+        cursor = conn.execute(
+            """
+            UPDATE feedback
+            SET rating = ?, comment = ?, created_at = CURRENT_TIMESTAMP
+            WHERE answer_id = ?
+            """,
+            (rating, comment, answer_id),
+        )
+        if int(cursor.rowcount if cursor.rowcount is not None else 0) == 0:
+            conn.execute(
+                "INSERT INTO feedback(answer_id, rating, comment) VALUES (?, ?, ?)",
+                (answer_id, rating, comment),
+            )
+        conn.commit()
+
+
+def record_feedback_event(index_dir: Path, answer_id: int, rating: int, comment: str) -> None:
+    ensure_schema(index_dir)
+    db_path = get_sqlite_db_path(index_dir)
+    with _open_conn(db_path) as conn:
+        conn.execute(
+            "INSERT INTO feedback_events(answer_id, rating, comment) VALUES (?, ?, ?)",
+            (answer_id, rating, comment),
+        )
+        conn.commit()
+
+
+def log_bad_answer(
+    index_dir: Path,
+    answer_id: int,
+    question: str,
+    answer_text: str,
+    retrieval_trace: list[dict],
+) -> None:
+    ensure_schema(index_dir)
+    db_path = get_sqlite_db_path(index_dir)
+    with _open_conn(db_path) as conn:
+        conn.execute(
+            """
+            INSERT INTO bad_answer_logs(answer_id, question, answer_text, retrieval_trace)
+            VALUES (?, ?, ?, ?)
+            """,
+            (answer_id, question, answer_text, json.dumps(retrieval_trace)),
+        )
+        conn.commit()
+
+
+def answer_exists(index_dir: Path, answer_id: int) -> bool:
+    ensure_schema(index_dir)
+    db_path = get_sqlite_db_path(index_dir)
+    with _open_conn(db_path) as conn:
+        row = conn.execute("SELECT 1 FROM answers WHERE id = ?", (answer_id,)).fetchone()
+    return row is not None
+
+
+def list_feedback_events(index_dir: Path) -> list[dict]:
+    ensure_schema(index_dir)
+    db_path = get_sqlite_db_path(index_dir)
+    with _open_conn(db_path) as conn:
+        rows = conn.execute(
+            "SELECT id, answer_id, rating, comment, created_at FROM feedback_events ORDER BY id"
+        ).fetchall()
+    return [
+        {
+            "id": int(row["id"]),
+            "answer_id": int(row["answer_id"]),
+            "rating": int(row["rating"]),
+            "comment": str(row["comment"]),
+            "created_at": str(row["created_at"]),
+        }
+        for row in rows
+    ]
+
+
+def list_bad_answer_logs(index_dir: Path) -> list[dict]:
+    ensure_schema(index_dir)
+    db_path = get_sqlite_db_path(index_dir)
+    with _open_conn(db_path) as conn:
+        rows = conn.execute(
+            "SELECT id, answer_id, question, answer_text, retrieval_trace, created_at FROM bad_answer_logs ORDER BY id"
+        ).fetchall()
+    return [
+        {
+            "id": int(row["id"]),
+            "answer_id": int(row["answer_id"]),
+            "question": str(row["question"]),
+            "answer_text": str(row["answer_text"]),
+            "retrieval_trace": json.loads(str(row["retrieval_trace"])),
+            "created_at": str(row["created_at"]),
+        }
+        for row in rows
+    ]
 
 
 def load_index(index_dir: Path) -> list[Chunk]:
