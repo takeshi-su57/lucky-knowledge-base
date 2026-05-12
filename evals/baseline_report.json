@@ -1,0 +1,334 @@
+{
+  "generated_at": "2026-05-12T21:41:39.033411+00:00",
+  "eval_coverage": 55,
+  "metrics": {
+    "top1_accuracy": 0.52,
+    "top3_accuracy": 0.64,
+    "top5_accuracy": 0.76,
+    "mrr": 0.597,
+    "citation_accuracy": 0.76,
+    "unknown_answer_accuracy": 1.0
+  },
+  "regression_vs_baseline": {
+    "top1_accuracy_delta": 0.0,
+    "top3_accuracy_delta": 0.0,
+    "top5_accuracy_delta": 0.0,
+    "mrr_delta": 0.0,
+    "citation_accuracy_delta": 0.0,
+    "unknown_answer_accuracy_delta": 0.0
+  },
+  "failed_examples": [
+    {
+      "id": "k6",
+      "question": "What does topic 06 describe?",
+      "failure_reasons": [
+        "retrieval_miss",
+        "citation_miss"
+      ],
+      "expected_sources": [
+        "kb/topic-06.md"
+      ],
+      "retrieved_sources": [
+        "kb\\topic-01.md",
+        "kb\\topic-02.md",
+        "kb\\topic-03.md",
+        "kb\\topic-04.md",
+        "kb\\topic-05.md"
+      ],
+      "citations": [
+        "- kb\\topic-01.md :: Topic 1 > Key Point (score=0.14, chunk_id=1)",
+        "- kb\\topic-02.md :: Topic 2 > Key Point (score=0.14, chunk_id=2)",
+        "- kb\\topic-03.md :: Topic 3 > Key Point (score=0.14, chunk_id=3)",
+        "- kb\\topic-04.md :: Topic 4 > Key Point (score=0.14, chunk_id=4)",
+        "- kb\\topic-05.md :: Topic 5 > Key Point (score=0.14, chunk_id=5)"
+      ],
+      "answer_preview": "Topic 1 describes concept 1 and practical usage."
+    },
+    {
+      "id": "k7",
+      "question": "What does topic 07 describe?",
+      "failure_reasons": [
+        "retrieval_miss",
+        "citation_miss"
+      ],
+      "expected_sources": [
+        "kb/topic-07.md"
+      ],
+      "retrieved_sources": [
+        "kb\\topic-01.md",
+        "kb\\topic-02.md",
+        "kb\\topic-03.md",
+        "kb\\topic-04.md",
+        "kb\\topic-05.md"
+      ],
+      "citations": [
+        "- kb\\topic-01.md :: Topic 1 > Key Point (score=0.14, chunk_id=1)",
+        "- kb\\topic-02.md :: Topic 2 > Key Point (score=0.14, chunk_id=2)",
+        "- kb\\topic-03.md :: Topic 3 > Key Point (score=0.14, chunk_id=3)",
+        "- kb\\topic-04.md :: Topic 4 > Key Point (score=0.14, chunk_id=4)",
+        "- kb\\topic-05.md :: Topic 5 > Key Point (score=0.14, chunk_id=5)"
+      ],
+      "answer_preview": "Topic 1 describes concept 1 and practical usage."
+    },
+    {
+      "id": "k8",
+      "question": "What does topic 08 describe?",
+      "failure_reasons": [
+        "retrieval_miss",
+        "citation_miss"
+      ],
+      "expected_sources": [
+        "kb/topic-08.md"
+      ],
+      "retrieved_sources": [
+        "kb\\topic-01.md",
+        "kb\\topic-02.md",
+        "kb\\topic-03.md",
+        "kb\\topic-04.md",
+        "kb\\topic-05.md"
+      ],
+      "citations": [
+        "- kb\\topic-01.md :: Topic 1 > Key Point (score=0.14, chunk_id=1)",
+        "- kb\\topic-02.md :: Topic 2 > Key Point (score=0.14, chunk_id=2)",
+        "- kb\\topic-03.md :: Topic 3 > Key Point (score=0.14, chunk_id=3)",
+        "- kb\\topic-04.md :: Topic 4 > Key Point (score=0.14, chunk_id=4)",
+        "- kb\\topic-05.md :: Topic 5 > Key Point (score=0.14, chunk_id=5)"
+      ],
+      "answer_preview": "Topic 1 describes concept 1 and practical usage."
+    },
+    {
+      "id": "k9",
+      "question": "What does topic 09 describe?",
+      "failure_reasons": [
+        "retrieval_miss",
+        "citation_miss"
+      ],
+      "expected_sources": [
+        "kb/topic-09.md"
+      ],
+      "retrieved_sources": [
+        "kb\\topic-01.md",
+        "kb\\topic-02.md",
+        "kb\\topic-03.md",
+        "kb\\topic-04.md",
+        "kb\\topic-05.md"
+      ],
+      "citations": [
+        "- kb\\topic-01.md :: Topic 1 > Key Point (score=0.14, chunk_id=1)",
+        "- kb\\topic-02.md :: Topic 2 > Key Point (score=0.14, chunk_id=2)",
+        "- kb\\topic-03.md :: Topic 3 > Key Point (score=0.14, chunk_id=3)",
+        "- kb\\topic-04.md :: Topic 4 > Key Point (score=0.14, chunk_id=4)",
+        "- kb\\topic-05.md :: Topic 5 > Key Point (score=0.14, chunk_id=5)"
+      ],
+      "answer_preview": "Topic 1 describes concept 1 and practical usage."
+    },
+    {
+      "id": "k26",
+      "question": "Summarize concept 06 from the notes.",
+      "failure_reasons": [
+        "retrieval_miss",
+        "citation_miss"
+      ],
+      "expected_sources": [
+        "kb/topic-06.md"
+      ],
+      "retrieved_sources": [
+        "kb\\topic-01.md",
+        "kb\\topic-02.md",
+        "kb\\topic-03.md",
+        "kb\\topic-04.md",
+        "kb\\topic-05.md"
+      ],
+      "citations": [
+        "- kb\\topic-01.md :: Topic 1 > Key Point (score=0.13, chunk_id=1)",
+        "- kb\\topic-02.md :: Topic 2 > Key Point (score=0.13, chunk_id=2)",
+        "- kb\\topic-03.md :: Topic 3 > Key Point (score=0.13, chunk_id=3)",
+        "- kb\\topic-04.md :: Topic 4 > Key Point (score=0.13, chunk_id=4)",
+        "- kb\\topic-05.md :: Topic 5 > Key Point (score=0.13, chunk_id=5)"
+      ],
+      "answer_preview": "Topic 1 describes concept 1 and practical usage."
+    },
+    {
+      "id": "k27",
+      "question": "Summarize concept 07 from the notes.",
+      "failure_reasons": [
+        "retrieval_miss",
+        "citation_miss"
+      ],
+      "expected_sources": [
+        "kb/topic-07.md"
+      ],
+      "retrieved_sources": [
+        "kb\\topic-01.md",
+        "kb\\topic-02.md",
+        "kb\\topic-03.md",
+        "kb\\topic-04.md",
+        "kb\\topic-05.md"
+      ],
+      "citations": [
+        "- kb\\topic-01.md :: Topic 1 > Key Point (score=0.13, chunk_id=1)",
+        "- kb\\topic-02.md :: Topic 2 > Key Point (score=0.13, chunk_id=2)",
+        "- kb\\topic-03.md :: Topic 3 > Key Point (score=0.13, chunk_id=3)",
+        "- kb\\topic-04.md :: Topic 4 > Key Point (score=0.13, chunk_id=4)",
+        "- kb\\topic-05.md :: Topic 5 > Key Point (score=0.13, chunk_id=5)"
+      ],
+      "answer_preview": "Topic 1 describes concept 1 and practical usage."
+    },
+    {
+      "id": "k28",
+      "question": "Summarize concept 08 from the notes.",
+      "failure_reasons": [
+        "retrieval_miss",
+        "citation_miss"
+      ],
+      "expected_sources": [
+        "kb/topic-08.md"
+      ],
+      "retrieved_sources": [
+        "kb\\topic-01.md",
+        "kb\\topic-02.md",
+        "kb\\topic-03.md",
+        "kb\\topic-04.md",
+        "kb\\topic-05.md"
+      ],
+      "citations": [
+        "- kb\\topic-01.md :: Topic 1 > Key Point (score=0.13, chunk_id=1)",
+        "- kb\\topic-02.md :: Topic 2 > Key Point (score=0.13, chunk_id=2)",
+        "- kb\\topic-03.md :: Topic 3 > Key Point (score=0.13, chunk_id=3)",
+        "- kb\\topic-04.md :: Topic 4 > Key Point (score=0.13, chunk_id=4)",
+        "- kb\\topic-05.md :: Topic 5 > Key Point (score=0.13, chunk_id=5)"
+      ],
+      "answer_preview": "Topic 1 describes concept 1 and practical usage."
+    },
+    {
+      "id": "k29",
+      "question": "Summarize concept 09 from the notes.",
+      "failure_reasons": [
+        "retrieval_miss",
+        "citation_miss"
+      ],
+      "expected_sources": [
+        "kb/topic-09.md"
+      ],
+      "retrieved_sources": [
+        "kb\\topic-01.md",
+        "kb\\topic-02.md",
+        "kb\\topic-03.md",
+        "kb\\topic-04.md",
+        "kb\\topic-05.md"
+      ],
+      "citations": [
+        "- kb\\topic-01.md :: Topic 1 > Key Point (score=0.13, chunk_id=1)",
+        "- kb\\topic-02.md :: Topic 2 > Key Point (score=0.13, chunk_id=2)",
+        "- kb\\topic-03.md :: Topic 3 > Key Point (score=0.13, chunk_id=3)",
+        "- kb\\topic-04.md :: Topic 4 > Key Point (score=0.13, chunk_id=4)",
+        "- kb\\topic-05.md :: Topic 5 > Key Point (score=0.13, chunk_id=5)"
+      ],
+      "answer_preview": "Topic 1 describes concept 1 and practical usage."
+    },
+    {
+      "id": "k46",
+      "question": "Where is practical usage for topic 06 discussed?",
+      "failure_reasons": [
+        "retrieval_miss",
+        "citation_miss"
+      ],
+      "expected_sources": [
+        "kb/topic-06.md"
+      ],
+      "retrieved_sources": [
+        "kb\\topic-01.md",
+        "kb\\topic-02.md",
+        "kb\\topic-03.md",
+        "kb\\topic-04.md",
+        "kb\\topic-05.md"
+      ],
+      "citations": [
+        "- kb\\topic-01.md :: Topic 1 > Key Point (score=0.34, chunk_id=1)",
+        "- kb\\topic-02.md :: Topic 2 > Key Point (score=0.34, chunk_id=2)",
+        "- kb\\topic-03.md :: Topic 3 > Key Point (score=0.34, chunk_id=3)",
+        "- kb\\topic-04.md :: Topic 4 > Key Point (score=0.34, chunk_id=4)",
+        "- kb\\topic-05.md :: Topic 5 > Key Point (score=0.34, chunk_id=5)"
+      ],
+      "answer_preview": "Topic 1 describes concept 1 and practical usage."
+    },
+    {
+      "id": "k47",
+      "question": "Where is practical usage for topic 07 discussed?",
+      "failure_reasons": [
+        "retrieval_miss",
+        "citation_miss"
+      ],
+      "expected_sources": [
+        "kb/topic-07.md"
+      ],
+      "retrieved_sources": [
+        "kb\\topic-01.md",
+        "kb\\topic-02.md",
+        "kb\\topic-03.md",
+        "kb\\topic-04.md",
+        "kb\\topic-05.md"
+      ],
+      "citations": [
+        "- kb\\topic-01.md :: Topic 1 > Key Point (score=0.34, chunk_id=1)",
+        "- kb\\topic-02.md :: Topic 2 > Key Point (score=0.34, chunk_id=2)",
+        "- kb\\topic-03.md :: Topic 3 > Key Point (score=0.34, chunk_id=3)",
+        "- kb\\topic-04.md :: Topic 4 > Key Point (score=0.34, chunk_id=4)",
+        "- kb\\topic-05.md :: Topic 5 > Key Point (score=0.34, chunk_id=5)"
+      ],
+      "answer_preview": "Topic 1 describes concept 1 and practical usage."
+    },
+    {
+      "id": "k48",
+      "question": "Where is practical usage for topic 08 discussed?",
+      "failure_reasons": [
+        "retrieval_miss",
+        "citation_miss"
+      ],
+      "expected_sources": [
+        "kb/topic-08.md"
+      ],
+      "retrieved_sources": [
+        "kb\\topic-01.md",
+        "kb\\topic-02.md",
+        "kb\\topic-03.md",
+        "kb\\topic-04.md",
+        "kb\\topic-05.md"
+      ],
+      "citations": [
+        "- kb\\topic-01.md :: Topic 1 > Key Point (score=0.34, chunk_id=1)",
+        "- kb\\topic-02.md :: Topic 2 > Key Point (score=0.34, chunk_id=2)",
+        "- kb\\topic-03.md :: Topic 3 > Key Point (score=0.34, chunk_id=3)",
+        "- kb\\topic-04.md :: Topic 4 > Key Point (score=0.34, chunk_id=4)",
+        "- kb\\topic-05.md :: Topic 5 > Key Point (score=0.34, chunk_id=5)"
+      ],
+      "answer_preview": "Topic 1 describes concept 1 and practical usage."
+    },
+    {
+      "id": "k49",
+      "question": "Where is practical usage for topic 09 discussed?",
+      "failure_reasons": [
+        "retrieval_miss",
+        "citation_miss"
+      ],
+      "expected_sources": [
+        "kb/topic-09.md"
+      ],
+      "retrieved_sources": [
+        "kb\\topic-01.md",
+        "kb\\topic-02.md",
+        "kb\\topic-03.md",
+        "kb\\topic-04.md",
+        "kb\\topic-05.md"
+      ],
+      "citations": [
+        "- kb\\topic-01.md :: Topic 1 > Key Point (score=0.34, chunk_id=1)",
+        "- kb\\topic-02.md :: Topic 2 > Key Point (score=0.34, chunk_id=2)",
+        "- kb\\topic-03.md :: Topic 3 > Key Point (score=0.34, chunk_id=3)",
+        "- kb\\topic-04.md :: Topic 4 > Key Point (score=0.34, chunk_id=4)",
+        "- kb\\topic-05.md :: Topic 5 > Key Point (score=0.34, chunk_id=5)"
+      ],
+      "answer_preview": "Topic 1 describes concept 1 and practical usage."
+    }
+  ]
+}

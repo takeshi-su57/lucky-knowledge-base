@@ -1,0 +1,443 @@
+﻿[
+    {
+        "id":  "k1",
+        "question":  "What does topic 01 describe?",
+        "expected_sources":  [
+                                 "kb/topic-01.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k2",
+        "question":  "What does topic 02 describe?",
+        "expected_sources":  [
+                                 "kb/topic-02.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k3",
+        "question":  "What does topic 03 describe?",
+        "expected_sources":  [
+                                 "kb/topic-03.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k4",
+        "question":  "What does topic 04 describe?",
+        "expected_sources":  [
+                                 "kb/topic-04.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k5",
+        "question":  "What does topic 05 describe?",
+        "expected_sources":  [
+                                 "kb/topic-05.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k6",
+        "question":  "What does topic 06 describe?",
+        "expected_sources":  [
+                                 "kb/topic-06.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k7",
+        "question":  "What does topic 07 describe?",
+        "expected_sources":  [
+                                 "kb/topic-07.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k8",
+        "question":  "What does topic 08 describe?",
+        "expected_sources":  [
+                                 "kb/topic-08.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k9",
+        "question":  "What does topic 09 describe?",
+        "expected_sources":  [
+                                 "kb/topic-09.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k10",
+        "question":  "What does topic 10 describe?",
+        "expected_sources":  [
+                                 "kb/topic-10.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k11",
+        "question":  "What does topic 11 describe?",
+        "expected_sources":  [
+                                 "kb/topic-11.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k12",
+        "question":  "What does topic 12 describe?",
+        "expected_sources":  [
+                                 "kb/topic-12.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k13",
+        "question":  "What does topic 13 describe?",
+        "expected_sources":  [
+                                 "kb/topic-13.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k14",
+        "question":  "What does topic 14 describe?",
+        "expected_sources":  [
+                                 "kb/topic-14.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k15",
+        "question":  "What does topic 15 describe?",
+        "expected_sources":  [
+                                 "kb/topic-15.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k16",
+        "question":  "What does topic 16 describe?",
+        "expected_sources":  [
+                                 "kb/topic-16.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k17",
+        "question":  "What does topic 17 describe?",
+        "expected_sources":  [
+                                 "kb/topic-17.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k18",
+        "question":  "What does topic 18 describe?",
+        "expected_sources":  [
+                                 "kb/topic-18.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k19",
+        "question":  "What does topic 19 describe?",
+        "expected_sources":  [
+                                 "kb/topic-19.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k20",
+        "question":  "What does topic 20 describe?",
+        "expected_sources":  [
+                                 "kb/topic-20.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k21",
+        "question":  "Summarize concept 01 from the notes.",
+        "expected_sources":  [
+                                 "kb/topic-01.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k22",
+        "question":  "Summarize concept 02 from the notes.",
+        "expected_sources":  [
+                                 "kb/topic-02.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k23",
+        "question":  "Summarize concept 03 from the notes.",
+        "expected_sources":  [
+                                 "kb/topic-03.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k24",
+        "question":  "Summarize concept 04 from the notes.",
+        "expected_sources":  [
+                                 "kb/topic-04.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k25",
+        "question":  "Summarize concept 05 from the notes.",
+        "expected_sources":  [
+                                 "kb/topic-05.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k26",
+        "question":  "Summarize concept 06 from the notes.",
+        "expected_sources":  [
+                                 "kb/topic-06.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k27",
+        "question":  "Summarize concept 07 from the notes.",
+        "expected_sources":  [
+                                 "kb/topic-07.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k28",
+        "question":  "Summarize concept 08 from the notes.",
+        "expected_sources":  [
+                                 "kb/topic-08.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k29",
+        "question":  "Summarize concept 09 from the notes.",
+        "expected_sources":  [
+                                 "kb/topic-09.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k30",
+        "question":  "Summarize concept 10 from the notes.",
+        "expected_sources":  [
+                                 "kb/topic-10.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k31",
+        "question":  "Summarize concept 11 from the notes.",
+        "expected_sources":  [
+                                 "kb/topic-11.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k32",
+        "question":  "Summarize concept 12 from the notes.",
+        "expected_sources":  [
+                                 "kb/topic-12.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k33",
+        "question":  "Summarize concept 13 from the notes.",
+        "expected_sources":  [
+                                 "kb/topic-13.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k34",
+        "question":  "Summarize concept 14 from the notes.",
+        "expected_sources":  [
+                                 "kb/topic-14.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k35",
+        "question":  "Summarize concept 15 from the notes.",
+        "expected_sources":  [
+                                 "kb/topic-15.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k36",
+        "question":  "Summarize concept 16 from the notes.",
+        "expected_sources":  [
+                                 "kb/topic-16.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k37",
+        "question":  "Summarize concept 17 from the notes.",
+        "expected_sources":  [
+                                 "kb/topic-17.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k38",
+        "question":  "Summarize concept 18 from the notes.",
+        "expected_sources":  [
+                                 "kb/topic-18.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k39",
+        "question":  "Summarize concept 19 from the notes.",
+        "expected_sources":  [
+                                 "kb/topic-19.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k40",
+        "question":  "Summarize concept 20 from the notes.",
+        "expected_sources":  [
+                                 "kb/topic-20.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k41",
+        "question":  "Where is practical usage for topic 01 discussed?",
+        "expected_sources":  [
+                                 "kb/topic-01.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k42",
+        "question":  "Where is practical usage for topic 02 discussed?",
+        "expected_sources":  [
+                                 "kb/topic-02.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k43",
+        "question":  "Where is practical usage for topic 03 discussed?",
+        "expected_sources":  [
+                                 "kb/topic-03.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k44",
+        "question":  "Where is practical usage for topic 04 discussed?",
+        "expected_sources":  [
+                                 "kb/topic-04.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k45",
+        "question":  "Where is practical usage for topic 05 discussed?",
+        "expected_sources":  [
+                                 "kb/topic-05.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k46",
+        "question":  "Where is practical usage for topic 06 discussed?",
+        "expected_sources":  [
+                                 "kb/topic-06.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k47",
+        "question":  "Where is practical usage for topic 07 discussed?",
+        "expected_sources":  [
+                                 "kb/topic-07.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k48",
+        "question":  "Where is practical usage for topic 08 discussed?",
+        "expected_sources":  [
+                                 "kb/topic-08.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k49",
+        "question":  "Where is practical usage for topic 09 discussed?",
+        "expected_sources":  [
+                                 "kb/topic-09.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "k50",
+        "question":  "Where is practical usage for topic 10 discussed?",
+        "expected_sources":  [
+                                 "kb/topic-10.md"
+                             ],
+        "expect_unknown":  false
+    },
+    {
+        "id":  "u51",
+        "question":  "What is quantum chromodynamics color confinement?",
+        "expected_sources":  [
+
+                             ],
+        "expect_unknown":  true
+    },
+    {
+        "id":  "u52",
+        "question":  "Explain Byzantine fault tolerant consensus proof details from these notes.",
+        "expected_sources":  [
+
+                             ],
+        "expect_unknown":  true
+    },
+    {
+        "id":  "u53",
+        "question":  "What is the orbital period of Mars colony one?",
+        "expected_sources":  [
+
+                             ],
+        "expect_unknown":  true
+    },
+    {
+        "id":  "u54",
+        "question":  "Summarize dragon genome inheritance rules in this knowledge base.",
+        "expected_sources":  [
+
+                             ],
+        "expect_unknown":  true
+    },
+    {
+        "id":  "u55",
+        "question":  "Describe CUDA kernel occupancy tuning from these markdown files.",
+        "expected_sources":  [
+
+                             ],
+        "expect_unknown":  true
+    }
+]
+
