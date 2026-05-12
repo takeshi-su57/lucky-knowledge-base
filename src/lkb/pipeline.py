@@ -7,7 +7,7 @@ from lkb.incremental import compute_content_hash, should_reindex
 from lkb.markdown import load_markdown_documents
 from lkb.models import AskResult, IndexReport
 from lkb.prompting import GROUNDING_PROMPT_TEMPLATE
-from lkb.retrieval import retrieve
+from lkb.retrieval import hybrid_retrieve, vector_retrieve
 from lkb.store import (
     clear_all_data,
     delete_documents_not_in,
@@ -69,9 +69,33 @@ def rebuild_index(kb_dir: Path, index_dir: Path, chunk_size: int = 120, overlap:
     return index_markdown_dir(kb_dir, index_dir, chunk_size=chunk_size, overlap=overlap)
 
 
-def ask_question(question: str, index_dir: Path, top_k: int = 5, threshold: float = 0.2) -> AskResult:
+def ask_question(
+    question: str,
+    index_dir: Path,
+    top_k: int = 5,
+    threshold: float = 0.2,
+    retrieval_strategy: str = "vector_only",
+    metadata_filters: dict | None = None,
+) -> AskResult:
     chunks = load_index(index_dir)
-    top_chunks = retrieve(question, chunks, top_k=top_k)
+    if retrieval_strategy == "vector_only":
+        top_chunks = vector_retrieve(
+            question,
+            chunks,
+            top_k=top_k,
+            metadata_filters=metadata_filters,
+        )
+    elif retrieval_strategy == "hybrid":
+        top_chunks = hybrid_retrieve(
+            question,
+            chunks,
+            top_k=top_k,
+            metadata_filters=metadata_filters,
+        )
+    else:
+        raise ValueError(
+            f"Unsupported retrieval_strategy={retrieval_strategy!r}. Use 'vector_only' or 'hybrid'."
+        )
 
     if not top_chunks or top_chunks[0].score < threshold:
         record_query(index_dir, question, top_chunks, UNKNOWN_ANSWER)
@@ -98,9 +122,21 @@ def ask_question(question: str, index_dir: Path, top_k: int = 5, threshold: floa
     return AskResult(answer=answer, citations=citations, top_chunks=top_chunks)
 
 
-def inspect_retrieval(question: str, index_dir: Path, top_k: int = 5) -> list[str]:
+def inspect_retrieval(
+    question: str,
+    index_dir: Path,
+    top_k: int = 5,
+    retrieval_strategy: str = "vector_only",
+) -> list[str]:
     chunks = load_index(index_dir)
-    scored = retrieve(question, chunks, top_k=top_k)
+    if retrieval_strategy == "vector_only":
+        scored = vector_retrieve(question, chunks, top_k=top_k, metadata_filters=None)
+    elif retrieval_strategy == "hybrid":
+        scored = hybrid_retrieve(question, chunks, top_k=top_k)
+    else:
+        raise ValueError(
+            f"Unsupported retrieval_strategy={retrieval_strategy!r}. Use 'vector_only' or 'hybrid'."
+        )
     lines = []
     for row in scored:
         heading = " > ".join(row.chunk.heading_path) if row.chunk.heading_path else "(no heading)"

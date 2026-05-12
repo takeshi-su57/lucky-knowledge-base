@@ -20,6 +20,10 @@ class IntegrationTests(unittest.TestCase):
             "# Git\n## Branches\nA branch is an independent line of development.\n",
             encoding="utf-8",
         )
+        (self.kb / "topic-06.md").write_text(
+            "# Topic 6\n## Key Point\nTopic 6 describes concept 6 and practical usage.\n",
+            encoding="utf-8",
+        )
 
         self.index_dir = self.root / "index"
         self.index_dir.mkdir(parents=True, exist_ok=True)
@@ -47,6 +51,17 @@ class IntegrationTests(unittest.TestCase):
             threshold=0.8,
         )
         self.assertEqual(result.answer, "I don't know based on the indexed notes.")
+
+    def test_hybrid_strategy_improves_exact_term_query(self):
+        index_markdown_dir(self.kb, self.index_dir)
+        result = ask_question(
+            "What does topic 06 describe?",
+            self.index_dir,
+            top_k=5,
+            threshold=0.1,
+            retrieval_strategy="hybrid",
+        )
+        self.assertTrue(result.top_chunks[0].chunk.source_path.endswith("kb\\topic-06.md"))
 
 
 if __name__ == "__main__":

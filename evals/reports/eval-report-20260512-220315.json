@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-05-12T22:03:15.087703+00:00",
+  "eval_coverage": 55,
+  "metrics": {
+    "top1_accuracy": 1.0,
+    "top3_accuracy": 1.0,
+    "top5_accuracy": 1.0,
+    "mrr": 1.0,
+    "citation_accuracy": 1.0,
+    "unknown_answer_accuracy": 1.0,
+    "exact_term_query_success": 1.0
+  },
+  "regression_vs_baseline": {
+    "top1_accuracy_delta": 0.48,
+    "top3_accuracy_delta": 0.36,
+    "top5_accuracy_delta": 0.24,
+    "mrr_delta": 0.403,
+    "citation_accuracy_delta": 0.24,
+    "unknown_answer_accuracy_delta": 0.0,
+    "exact_term_query_success_delta": null
+  },
+  "failed_examples": []
+}

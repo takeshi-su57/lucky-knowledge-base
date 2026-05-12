@@ -140,6 +140,7 @@ class EvalHarnessUnitTests(unittest.TestCase):
                 "mrr",
                 "citation_accuracy",
                 "unknown_answer_accuracy",
+                "exact_term_query_success",
             },
         )
         self.assertEqual(
@@ -151,11 +152,64 @@ class EvalHarnessUnitTests(unittest.TestCase):
                 "mrr_delta",
                 "citation_accuracy_delta",
                 "unknown_answer_accuracy_delta",
+                "exact_term_query_success_delta",
             },
         )
         md = format_markdown_report(report)
         self.assertIn("## Metrics", md)
         self.assertIn("## Failed Examples", md)
+
+    def test_strategy_comparison_reports_top5_delta_and_exact_term_success(self):
+        from lkb.eval_harness import GoldenQuestion, compare_retrieval_strategies
+
+        questions = [
+            GoldenQuestion(
+                qid="q1",
+                question="What does topic 06 describe?",
+                expected_sources=["kb/topic-06.md"],
+                expect_unknown=False,
+            ),
+            GoldenQuestion(
+                qid="q2",
+                question="What does topic 07 describe?",
+                expected_sources=["kb/topic-07.md"],
+                expect_unknown=False,
+            ),
+        ]
+
+        answers = {
+            ("vector_only", "What does topic 06 describe?"): _make_result(
+                paths=["kb/topic-01.md", "kb/topic-06.md"]
+            ),
+            ("vector_only", "What does topic 07 describe?"): _make_result(paths=["kb/topic-01.md", "kb/topic-02.md"]),
+            ("hybrid", "What does topic 06 describe?"): _make_result(paths=["kb/topic-06.md", "kb/topic-01.md"]),
+            ("hybrid", "What does topic 07 describe?"): _make_result(paths=["kb/topic-07.md", "kb/topic-02.md"]),
+        }
+
+        def fake_ask(
+            question: str,
+            _index_dir: Path,
+            top_k: int = 5,
+            threshold: float = 0.2,
+            retrieval_strategy: str = "vector_only",
+        ) -> AskResult:
+            del top_k, threshold
+            return answers[(retrieval_strategy, question)]
+
+        report = compare_retrieval_strategies(
+            questions=questions,
+            index_dir=Path("."),
+            ask_fn=fake_ask,
+            top_k=5,
+            threshold=0.2,
+            exact_term_ids={"q1", "q2"},
+        )
+
+        self.assertIn("vector_only", report)
+        self.assertIn("hybrid", report)
+        self.assertIn("top5_accuracy_delta", report)
+        self.assertAlmostEqual(report["top5_accuracy_delta"], 0.5, places=6)
+        self.assertAlmostEqual(report["hybrid"]["metrics"]["exact_term_query_success"], 1.0, places=6)
 
     def test_coverage_guard_requires_at_least_50_questions(self):
         from lkb.eval_harness import GoldenQuestion, ensure_minimum_coverage

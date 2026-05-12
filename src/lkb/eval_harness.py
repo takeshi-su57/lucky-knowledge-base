@@ -69,6 +69,7 @@ def _compute_regression(
         "mrr",
         "citation_accuracy",
         "unknown_answer_accuracy",
+        "exact_term_query_success",
     ):
         baseline_value = baseline_metrics.get(key)
         deltas[f"{key}_delta"] = None if baseline_value is None else float(metrics[key] - baseline_value)
@@ -83,6 +84,8 @@ def evaluate_questions(
     threshold: float = 0.1,
     unknown_threshold: float = 0.8,
     baseline_report: dict | None = None,
+    retrieval_strategy: str = "vector_only",
+    exact_term_ids: set[str] | None = None,
 ) -> dict:
     answerable_total = 0
     top1_hits = 0
@@ -92,11 +95,22 @@ def evaluate_questions(
     citation_hits = 0
     unknown_total = 0
     unknown_correct = 0
+    exact_term_total = 0
+    exact_term_success = 0
     failed_examples: list[dict] = []
 
     for row in questions:
         use_threshold = unknown_threshold if row.expect_unknown else threshold
-        result = ask_fn(row.question, index_dir, top_k=top_k, threshold=use_threshold)
+        try:
+            result = ask_fn(
+                row.question,
+                index_dir,
+                top_k=top_k,
+                threshold=use_threshold,
+                retrieval_strategy=retrieval_strategy,
+            )
+        except TypeError:
+            result = ask_fn(row.question, index_dir, top_k=top_k, threshold=use_threshold)
         retrieved_sources = [scored.chunk.source_path for scored in result.top_chunks[:top_k]]
         failure_reasons: list[str] = []
 
@@ -120,6 +134,11 @@ def evaluate_questions(
                 mrr_total += 1.0 / rank
             else:
                 failure_reasons.append("retrieval_miss")
+
+            if exact_term_ids and row.qid in exact_term_ids:
+                exact_term_total += 1
+                if rank is not None:
+                    exact_term_success += 1
 
             citation_match = any(
                 _normalize_path(expected) in _normalize_path(citation)
@@ -151,6 +170,7 @@ def evaluate_questions(
         "mrr": (mrr_total / answerable_total) if answerable_total else 0.0,
         "citation_accuracy": (citation_hits / answerable_total) if answerable_total else 0.0,
         "unknown_answer_accuracy": (unknown_correct / unknown_total) if unknown_total else 1.0,
+        "exact_term_query_success": (exact_term_success / exact_term_total) if exact_term_total else 1.0,
     }
 
     return {
@@ -159,6 +179,47 @@ def evaluate_questions(
         "metrics": metrics,
         "regression_vs_baseline": _compute_regression(metrics, baseline_report),
         "failed_examples": failed_examples,
+    }
+
+
+def compare_retrieval_strategies(
+    questions: list[GoldenQuestion],
+    index_dir: Path,
+    ask_fn: Callable[..., AskResult] = ask_question,
+    top_k: int = 5,
+    threshold: float = 0.1,
+    unknown_threshold: float = 0.8,
+    exact_term_ids: set[str] | None = None,
+    baseline_report: dict | None = None,
+) -> dict:
+    vector_report = evaluate_questions(
+        questions=questions,
+        index_dir=index_dir,
+        ask_fn=ask_fn,
+        top_k=top_k,
+        threshold=threshold,
+        unknown_threshold=unknown_threshold,
+        retrieval_strategy="vector_only",
+        exact_term_ids=exact_term_ids,
+    )
+    hybrid_report = evaluate_questions(
+        questions=questions,
+        index_dir=index_dir,
+        ask_fn=ask_fn,
+        top_k=top_k,
+        threshold=threshold,
+        unknown_threshold=unknown_threshold,
+        baseline_report=baseline_report,
+        retrieval_strategy="hybrid",
+        exact_term_ids=exact_term_ids,
+    )
+    top5_delta = hybrid_report["metrics"]["top5_accuracy"] - vector_report["metrics"]["top5_accuracy"]
+    return {
+        "generated_at": hybrid_report["generated_at"],
+        "eval_coverage": hybrid_report["eval_coverage"],
+        "top5_accuracy_delta": float(top5_delta),
+        "vector_only": vector_report,
+        "hybrid": hybrid_report,
     }
 
 
@@ -183,6 +244,7 @@ def format_markdown_report(report: dict) -> str:
         "mrr",
         "citation_accuracy",
         "unknown_answer_accuracy",
+        "exact_term_query_success",
     )
     for key in metric_keys:
         value = f"{metrics[key]:.4f}"
