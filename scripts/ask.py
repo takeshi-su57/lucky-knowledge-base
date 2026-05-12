@@ -14,9 +14,16 @@ def main() -> None:
     parser.add_argument("--index-dir", default=".index")
     parser.add_argument("--top-k", type=int, default=5)
     parser.add_argument("--threshold", type=float, default=0.2)
+    parser.add_argument("--retrieval-strategy", choices=["vector_only", "hybrid"], default="vector_only")
     args = parser.parse_args()
 
-    result = ask_question(args.question, Path(args.index_dir), args.top_k, args.threshold)
+    result = ask_question(
+        args.question,
+        Path(args.index_dir),
+        args.top_k,
+        args.threshold,
+        retrieval_strategy=args.retrieval_strategy,
+    )
     print("Answer:")
     print(result.answer)
     print("\nCitations:")
